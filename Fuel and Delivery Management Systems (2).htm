@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FuelFlow Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f9;
+      margin: 0;
+    }
+    header {
+      background: white;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #ddd;
+    }
+    .container {
+      padding: 20px;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+    .card {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .card h3 {
+      margin: 0;
+      font-size: 14px;
+      color: gray;
+    }
+    .card p {
+      font-size: 20px;
+      margin: 5px 0 0;
+      font-weight: bold;
+    }
+    .charts {
+      display: grid;
+      grid-template-columns: 2fr 2fr;
+      gap: 15px;
+    }
+    .chart-box {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+    }
+    .bottom {
+      display: grid;
+      grid-template-columns: 2fr 2fr;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h2>FuelFlow</h2>
+  <nav>
+    Dashboard | Deliveries | Vehicles | Fuel Inventory
+  </nav>
+</header>
+
+<div class="container">
+
+  <!-- Cards -->
+  <div class="cards">
+    <div class="card">
+      <h3>Total Deliveries</h3>
+      <p>6</p>
+    </div>
+    <div class="card">
+      <h3>Active Vehicles</h3>
+      <p>2/5</p>
+    </div>
+    <div class="card">
+      <h3>Total Revenue</h3>
+      <p>$21,447.5</p>
+    </div>
+    <div class="card">
+      <h3>Fuel Alerts</h3>
+      <p>2</p>
+    </div>
+  </div>
+
+  <!-- Charts -->
+  <div class="charts">
+    <div class="chart-box">
+      <h3>Weekly Deliveries</h3>
+      <canvas id="barChart"></canvas>
+    </div>
+    <div class="chart-box">
+      <h3>Revenue Trend</h3>
+      <canvas id="lineChart"></canvas>
+    </div>
+  </div>
+
+  <!-- Bottom -->
+  <div class="bottom">
+    <div class="chart-box">
+      <h3>Delivery Status</h3>
+      <canvas id="pieChart1"></canvas>
+    </div>
+    <div class="chart-box">
+      <h3>Fuel Type Distribution</h3>
+      <canvas id="pieChart2"></canvas>
+    </div>
+  </div>
+
+  <!-- Recent Deliveries -->
+  <div class="chart-box" style="margin-top:20px;">
+    <h3>Recent Deliveries</h3>
+    <ul>
+      <li>ABC Construction Co <span>$4,075</span></li>
+      <li>Green Valley Farms <span>$2,612.5</span></li>
+      <li>City Gas Station <span>$5,200</span></li>
+      <li>Premium Auto Service <span>$3,600</span></li>
+      <li>Transport Logistics Inc <span>$6,500</span></li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+  // Bar Chart
+  new Chart(document.getElementById("barChart"), {
+    type: "bar",
+    data: {
+      labels: ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],
+      datasets: [{
+        data: [12,18,14,20,17,10,8],
+        backgroundColor: "#4e73df"
+      }]
+    }
+  });
+
+  // Line Chart
+  new Chart(document.getElementById("lineChart"), {
+    type: "line",
+    data: {
+      labels: ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],
+      datasets: [{
+        data: [7000,8500,7200,9500,8200,6000,5000],
+        borderColor: "green",
+        fill: false
+      }]
+    }
+  });
+
+  // Pie Chart 1
+  new Chart(document.getElementById("pieChart1"), {
+    type: "pie",
+    data: {
+      labels: ["Delivered","In Transit","Pending"],
+      datasets: [{
+        data: [55,32,13],
+        backgroundColor: ["green","blue","orange"]
+      }]
+    }
+  });
+
+  // Pie Chart 2
+  new Chart(document.getElementById("pieChart2"), {
+    type: "pie",
+    data: {
+      labels: ["Diesel","Gasoline","Premium"],
+      datasets: [{
+        data: [55,30,15],
+        backgroundColor: ["purple","teal","orange"]
+      }]
+    }
+  });
+</script>
+
+</body>
+</html>
